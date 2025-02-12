@@ -31,4 +31,3 @@ results_df = pd.DataFrame(results)
 
 # Enregistrer les résultats dans un fichier Excel
 results_df.to_excel('resultats_crete_a_crete.xlsx', index=False)
-
