@@ -28,7 +28,7 @@ def convert_prn_to_xlsx(prn_file_path, xlsx_file_path, delimiter='\\s+'):
 # Conversion de tous les fichiers .prn trouvés
 for prn_file in prn_files:
     prn_file_path = os.path.join(folder_path, prn_file)
-    xlsx_file_path = os.path.splitext(prn_file_path)[0] + '.xlsx'
+    xlsx_file_path = os.path.join(folder_path, os.path.splitext(prn_file)[0] + '.xlsx')
     
     # Vérifiez si le fichier existe
     if os.path.exists(prn_file_path):
