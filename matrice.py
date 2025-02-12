@@ -27,7 +27,7 @@ for file_name in os.listdir(folder_path):
 
 # Créer un DataFrame avec tous les résultats
 results_df = pd.DataFrame(results)
-print(results_df)
+#print(results_df)
 
 # Enregistrer les résultats dans un fichier Excel
 results_df.to_excel('resultats_crete_a_crete.xlsx', index=False)
