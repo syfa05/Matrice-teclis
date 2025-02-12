@@ -1,4 +1,8 @@
 import pandas as pd
+import os
+
+# Chemin du dossier contenant les fichiers Excel
+folder_path = r"C:\Users\fresn\PythonProject\Matrice teclis\Document format prn"
 
 def convert_prn_to_xlsx(prn_file_path, xlsx_file_path, delimiter='\\s+'):
     try:
@@ -11,10 +15,24 @@ def convert_prn_to_xlsx(prn_file_path, xlsx_file_path, delimiter='\\s+'):
         print(f"Conversion réussie : {xlsx_file_path}")
     except Exception as e:
         print(f"Erreur lors de la conversion : {e}")
+        
 
-# Exemple d'utilisation
-prn_file = 'Tests_amplitude  protocole1 Piston 1 joints-0.05µl-a.PRNn'   # Remplacez par le chemin de votre fichier .prn
-xlsx_file = 'resultat.xlsx'      # Chemin de sortie pour le fichier Excel
+# Parcours de tous les fichiers dans le dossier
+for filename in os.listdir(folder_path):
+    if filename.endswith(".PRN"):
+        prn_file_path = os.path.join(folder_path, filename)
+        xlsx_file_path = os.path.join(folder_path, filename.replace(".PRN", ".xlsx"))
+        
+        # Nettoyage des deux premières lignes du fichier .prn
+        with open(prn_file_path, 'r') as file:
+            lines = file.readlines()[2:]  # Ignorer les deux premières lignes
+        
+        with open(prn_file_path, 'w') as file:
+            file.writelines(lines)
+        
+        # Conversion du fichier nettoyé
+        convert_prn_to_xlsx(prn_file_path, xlsx_file_path)
 
-convert_prn_to_xlsx(prn_file, xlsx_file)
+
+
 

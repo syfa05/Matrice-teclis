@@ -2,21 +2,21 @@ import pandas as pd
 import os
 
 # Chemin du dossier contenant les fichiers Excel
-folder_path = r"C:\Users\fresn\PythonProject\Matrice teclis\Document excel"
+folder_path = r"C:\Users\fresn\PythonProject\Matrice teclis\Document format prn"
 
 # Liste pour stocker les résultats
 results = []
 
 # Parcourir tous les fichiers Excel dans le dossier
 for file_name in os.listdir(folder_path):
-    if file_name.endswith('.XLSX'):
+    if file_name.endswith('.xlsx'):
         file_path = os.path.join(folder_path, file_name)
         
         # Lire le fichier Excel
         df = pd.read_excel(file_path)
         
         # Calculer la valeur crête à crête pour la colonne 'Volume' entre les lignes 151 et 191
-        volume_values = pd.to_numeric(df.iloc[151:191].iloc[:, 5], errors='coerce')  # Convertir en valeurs numériques
+        volume_values = pd.to_numeric(df.iloc[145:185].iloc[:, 4], errors='coerce')  # Convertir en valeurs numériques
         if not volume_values.empty:
             valeur_crete_a_crete = volume_values.max() - volume_values.min()
         else:
